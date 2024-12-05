@@ -1,6 +1,4 @@
-using SolutionTools;
-
-namespace Day4_Csharp;
+namespace SolutionTools;
 
 public static class Directions
 {
