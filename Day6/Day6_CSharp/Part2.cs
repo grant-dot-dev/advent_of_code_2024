@@ -1,100 +1,42 @@
+namespace Day6_CSharp;
+
 public class Part2
 {
     public int Solve(string[] dataInput)
     {
         var total = 0;
         var grid = Array.ConvertAll(dataInput, row => row.ToCharArray());
-        var visitedRoute = GetPatrolRoute(dataInput);
 
-        // Get start position of guard
-        (int, int)? startPos = null;
-        for (var rowIdx = 0; rowIdx < grid.Length; rowIdx++)
+        var startPosition = GuardRouteHelper.GetStartPosition(grid);
+        if (startPosition == null)
         {
-            var row = grid[rowIdx];
-            if (Array.IndexOf(row, '^') == -1) continue;
-
-            var colIdx = Array.IndexOf(row, '^');
-            startPos = (rowIdx, colIdx);
-            break;
+            throw new ArgumentNullException("startPosition");
         }
 
+        // Always start up
         int nextRow = -1, nextCol = 0;
 
-        // Test obstacles only on the guard's patrol route
-        foreach (var (row, col) in visitedRoute)
+        // Use centralized helper for initial route
+        var visitedPositions = GuardRouteHelper.TraverseRoute(startPosition.Value, nextRow, nextCol, grid);
+
+        // Loop through the visited positions only to add obstacles
+        foreach (var (row, col) in visitedPositions)
         {
             if (grid[row][col] != '.')
             {
                 continue;
             }
 
-            // Place an obstacle and check for loop
             grid[row][col] = '#';
-            if (PatrolLoop(startPos.Value, nextRow, nextCol, grid))
+            if (PatrolLoop(startPosition.Value, nextRow, nextCol, grid))
             {
                 total++;
             }
 
-            // Remove the obstacle
             grid[row][col] = '.';
         }
 
         return total;
-    }
-
-    private HashSet<(int, int)> GetPatrolRoute(string[] dataInput)
-    {
-        var visited = new HashSet<(int, int)>();
-        var grid = Array.ConvertAll(dataInput, row => row.ToCharArray());
-
-        // Get start position of guard
-        (int, int)? startPos = null;
-        for (var rowIdx = 0; rowIdx < grid.Length; rowIdx++)
-        {
-            var row = grid[rowIdx];
-            if (Array.IndexOf(row, '^') == -1) continue;
-
-            var colIdx = Array.IndexOf(row, '^');
-            startPos = (rowIdx, colIdx);
-            break;
-        }
-
-        int nextRow = -1, nextCol = 0;
-
-        // Simulate the patrol route
-        FindRoute(visited, startPos.Value, nextRow, nextCol, grid);
-        return visited;
-    }
-
-    private void FindRoute(HashSet<(int, int)> visited, (int, int) startPos, int nextRow, int nextCol, char[][] grid)
-    {
-        var rowCount = grid.Length;
-        var colCount = grid[0].Length;
-        var (currRow, currCol) = startPos;
-
-        while (true)
-        {
-            // Add coords to visited
-            visited.Add((currRow, currCol));
-
-            // Bounds check (is guard gonna leave)
-            if (currRow + nextRow < 0 || currRow + nextRow >= rowCount || currCol + nextCol < 0 ||
-                currCol + nextCol >= colCount)
-            {
-                break;
-            }
-
-            // Check for obstacle else move
-            if (grid[currRow + nextRow][currCol + nextCol] == '#')
-            {
-                (nextRow, nextCol) = (nextCol, -nextRow);
-            }
-            else
-            {
-                currRow += nextRow;
-                currCol += nextCol;
-            }
-        }
     }
 
     private bool PatrolLoop((int, int) startPos, int nextRow, int nextCol, char[][] grid)
@@ -106,23 +48,24 @@ public class Part2
 
         while (true)
         {
-            // Add coords to visited
+            // Add current state to visited
             visited.Add((currRow, currCol, nextRow, nextCol));
 
-            // Bounds check (is guard gonna leave)
+            // Check bounds (stop if the guard is about to leave the grid)
             if (currRow + nextRow < 0 || currRow + nextRow >= rowCount || currCol + nextCol < 0 ||
                 currCol + nextCol >= colCount)
             {
                 break;
             }
 
-            // Check for obstacle else move
+            // Check for obstacle; if hit, change direction
             if (grid[currRow + nextRow][currCol + nextCol] == '#')
             {
-                (nextCol, nextRow) = (-nextRow, nextCol);
+                (nextRow, nextCol) = (nextCol, -nextRow);
             }
             else
             {
+                // Move to the next position
                 currRow += nextRow;
                 currCol += nextCol;
             }
