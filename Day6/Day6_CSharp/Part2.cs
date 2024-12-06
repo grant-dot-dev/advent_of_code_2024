@@ -87,7 +87,7 @@ public class Part2
             // Check for obstacle else move
             if (grid[currRow + nextRow][currCol + nextCol] == '#')
             {
-                (nextCol, nextRow) = (-nextRow, nextCol);
+                (nextRow, nextCol) = (nextCol, -nextRow);
             }
             else
             {
