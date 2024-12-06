@@ -1,4 +1,6 @@
-﻿var inputData = File.ReadAllLines("input1.txt");
+﻿using Day6_CSharp;
+
+var inputData = File.ReadAllLines("input1.txt");
 
 
 Console.WriteLine($"Part 1 = {new Part1().Solve(inputData)}");

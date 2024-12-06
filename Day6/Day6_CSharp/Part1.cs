@@ -1,3 +1,5 @@
+namespace Day6_CSharp;
+
 public class Part1
 {
     public int Solve(string[] dataInput)
