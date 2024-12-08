@@ -24,7 +24,7 @@ int Part1()
             int dx = ax - bx;
 
             var aa = new Point(ax + dx, ay + dy);
-            var bb = (bx - dx, by - dy);
+            var bb = new Point(bx - dx, by - dy);
 
             if (grid.Contains(aa)) antinodes.Add(aa);
             if (grid.Contains(bb)) antinodes.Add(bb);
@@ -51,7 +51,7 @@ int Part2()
             int i = 0;
             while (true)
             {
-                var aa = (ay + dy * i, ax + dx * i);
+                var aa = new Point(ax + dx * i, ay + dy * i);
                 if (grid.Contains(aa))
                 {
                     antinodes.Add(aa);
@@ -66,7 +66,7 @@ int Part2()
             i = 0;
             while (true)
             {
-                var bb = (by - dy * i, bx - dx * i);
+                var bb = new Point(bx - dx * i, by - dy * i);
                 if (grid.Contains(bb))
                 {
                     antinodes.Add(bb);
