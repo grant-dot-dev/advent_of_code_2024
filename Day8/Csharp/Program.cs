@@ -18,13 +18,13 @@ int Part1()
 
     foreach (var coords in antennaLocations.Values)
     {
-        foreach (var ((ay, ax), (by, bx)) in Combinations(coords, 2))
+        foreach (var ((startY, startX), (endY, endX)) in Combinations(coords, 2))
         {
-            int dy = ay - by;
-            int dx = ax - bx;
+            int dy = startY - endY;
+            int dx = startX - endX;
 
-            var aa = new Point(ax + dx, ay + dy);
-            var bb = new Point(bx - dx, by - dy);
+            var aa = new Point(startX + dx, startY + dy);
+            var bb = new Point(endX - dx, endY - dy);
 
             if (grid.Contains(aa)) antinodes.Add(aa);
             if (grid.Contains(bb)) antinodes.Add(bb);
@@ -40,10 +40,10 @@ int Part2()
 
     foreach (var coords in antennaLocations.Values)
     {
-        foreach (var ((ay, ax), (by, bx)) in Combinations<Point>(coords, 2))
+        foreach (var ((startY, startX), (endY, endX)) in Combinations(coords, 2))
         {
-            int dy = ay - by;
-            int dx = ax - bx;
+            int dy = startY - endY;
+            int dx = startX - endX;
             int gcd = Gcd(dx, dy);
             dy /= gcd;
             dx /= gcd;
@@ -51,7 +51,7 @@ int Part2()
             int i = 0;
             while (true)
             {
-                var aa = new Point(ax + dx * i, ay + dy * i);
+                var aa = new Point(startX + dx * i, startY + dy * i);
                 if (grid.Contains(aa))
                 {
                     antinodes.Add(aa);
@@ -66,7 +66,7 @@ int Part2()
             i = 0;
             while (true)
             {
-                var bb = new Point(bx - dx * i, by - dy * i);
+                var bb = new Point(endX - dx * i, endY - dy * i);
                 if (grid.Contains(bb))
                 {
                     antinodes.Add(bb);
