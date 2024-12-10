@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day_1", "Day1\Day_1_Csharp\Day_1.csproj", "{0052FE91-AC26-4AC1-939B-31022B9F95F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day2_Csharp", "Day2\Day2_Csharp\Day2_Csharp.csproj", "{D6B4AE8E-E55E-4D8F-85BA-A2644A8FCCED}"
@@ -20,6 +20,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day8", "Day8", "{12071257-66C4-46C4-9ECE-E9B96001E66A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csharp", "Day8\Csharp\Csharp.csproj", "{8D454BF5-E845-44A3-B6F1-AC10262A637C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day9", "Day9", "{22448D5B-142D-43D9-B284-DAB12B4A8064}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
