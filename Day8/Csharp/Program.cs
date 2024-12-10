@@ -1,8 +1,8 @@
 ﻿using SolutionTools;
 
 var lines = File.ReadAllLines("test.txt")
-                .Select(line => line.ToCharArray())
-                .ToArray();
+    .Select(line => line.ToCharArray())
+    .ToArray();
 
 
 var grid = ParseGrid(lines);
@@ -94,6 +94,7 @@ HashSet<Point> ParseGrid(char[][] input)
             gridPoints.Add(new Point(x, y));
         }
     }
+
     return gridPoints;
 }
 
@@ -101,9 +102,9 @@ Dictionary<char, List<Point>> BuildAntennaLocations(HashSet<Point> grid)
 {
     var antennas = new Dictionary<char, List<Point>>();
     foreach (var (point, val) in from point in grid
-                                 let val = lines[point.Y][point.X]
-                                 where val != '.'
-                                 select (point, val))
+             let val = lines[point.Y][point.X]
+             where val != '.'
+             select (point, val))
     {
         if (!antennas.ContainsKey(val))
         {
@@ -138,5 +139,6 @@ static int Gcd(int a, int b)
         b = a % b;
         a = temp;
     }
+
     return Math.Abs(a);
 }

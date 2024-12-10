@@ -6,7 +6,7 @@ namespace Day7_Csharp
         {
             string[] lines = File.ReadAllLines(Path.GetFullPath("input1.txt"));
             Console.WriteLine($"Solution 1 Lines Found:{lines.Length}");
-            
+
             long total = 0;
 
             foreach (string line in lines)
