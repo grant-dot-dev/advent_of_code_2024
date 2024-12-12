@@ -1,6 +1,6 @@
 ﻿using Day10_CSharp;
 
-var lines = File.ReadAllLines("./input.txt");
+var lines = File.ReadAllLines("./tester.txt");
 var gridSize = lines.Length;
 
 

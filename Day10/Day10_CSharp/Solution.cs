@@ -37,6 +37,10 @@ public class BothParts
             var visitedEndPoints = new HashSet<Point>();
             var queue = new Queue<Point>();
             queue.Enqueue(startPoint);
+            if (startPoint == (0, 2))
+            {
+                Console.WriteLine(string.Join(", ", queue.ToArray()));
+            }
 
             while (queue.Count > 0)
             {
