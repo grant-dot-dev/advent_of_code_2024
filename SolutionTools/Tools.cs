@@ -1,6 +1,6 @@
 namespace SolutionTools;
 
-public class Tools
+public static class Tools
 {
     public static char[,] ParseGridFromFile(string filePath)
     {
