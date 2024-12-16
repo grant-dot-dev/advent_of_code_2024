@@ -22,7 +22,7 @@ def parse_grid(data) -> tuple:
     return grid, instructions, start_position
 
 
-def modify_grid(data) -> tuple:
+def parse_grid_replacement(data) -> tuple:
     lines = data.splitlines()
     for i, line in enumerate(lines):
         lines[i] = line.replace("#", "##").replace(
@@ -199,7 +199,7 @@ def part_one(data) -> int:
 
 
 def part_two(data) -> int:
-    grid, instructions, start_position = modify_grid(data)
+    grid, instructions, start_position = parse_grid_replacement(data)
     move_robot_in_second_warehouse(grid, instructions, start_position)
 
     # add up all the boxes in the second warehouse
