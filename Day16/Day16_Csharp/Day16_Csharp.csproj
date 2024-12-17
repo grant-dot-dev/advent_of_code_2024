@@ -8,13 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="BenchmarkDotnet" Version="0.14.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="input1.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+      <ProjectReference Include="..\..\SolutionTools\SolutionTools.csproj" />
     </ItemGroup>
 
 </Project>
