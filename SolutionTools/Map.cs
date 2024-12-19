@@ -22,4 +22,21 @@ public static class Map
 
         return map;
     }
+
+
+    public static void PrintGrid(char[,] array)
+    {
+        int rows = array.GetLength(0);
+        int cols = array.GetLength(1);
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                Console.Write(array[i, j]);
+            }
+
+            Console.WriteLine();
+        }
+    }
 }

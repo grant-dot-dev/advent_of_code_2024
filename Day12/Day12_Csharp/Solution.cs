@@ -102,9 +102,9 @@ public static class GridSolver
             foreach (var point in region)
             {
                 foreach (var offset in new (double, double)[]
-                {
-                    (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5)
-                })
+                         {
+                             (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5)
+                         })
                 {
                     var corner = (point.X + offset.Item1, point.Y + offset.Item2);
 
@@ -118,7 +118,8 @@ public static class GridSolver
                         (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5)
                     }.Count(offset2 =>
                     {
-                        var neighbor = new Point((int)(corner.Item1 + offset2.Item1), (int)(corner.Item2 + offset2.Item2));
+                        var neighbor = new Point((int)(corner.Item1 + offset2.Item1),
+                            (int)(corner.Item2 + offset2.Item2));
                         return region.Contains(neighbor);
                     });
 
