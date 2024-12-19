@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Net.WebSockets;
-using Day12_Csharp;
 using SolutionTools;
 
 var sw = new Stopwatch();
@@ -15,11 +13,6 @@ sw.Stop();
 Console.WriteLine($"Part 1 => {sw.Elapsed}ms");
 Console.WriteLine(part1);
 Console.WriteLine(part2);
-
-
-
-
-
 
 
 return;
