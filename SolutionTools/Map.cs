@@ -39,4 +39,69 @@ public static class Map
             Console.WriteLine();
         }
     }
+
+    /// <summary>
+    /// Finds shortest path using Dijkstra algorithm Up, Down, Left, Right, where cost for all movements is 1
+    /// </summary>
+    /// <param name="grid">Map to be navigated</param>
+    /// <param name="sr">Starting row index</param>
+    /// <param name="sc">Starting column index</param>
+    /// <param name="er">Ending row index</param>
+    /// <param name="ec"> Ending column index</param>
+    /// <returns>Number of steps</returns>
+    public static int FindShortestPath(char[,] grid, int sr, int sc, int er, int ec)
+    {
+        var rows = grid.GetLength(0);
+        var cols = grid.GetLength(1);
+
+        var pq = new PriorityQueue<(int cost, int r, int c), int>();
+        pq.Enqueue((0, sr, sc), 0);
+
+        var seen = new HashSet<(int row, int column)> { (sr, sc) };
+
+        var directions = new (int dr, int dc)[]
+        {
+            (0, 1), // Right
+            (1, 0), // Down
+            (0, -1), // Left
+            (-1, 0) // Up
+        };
+
+        while (pq.Count > 0)
+        {
+            var (cost, row, col) = pq.Dequeue();
+
+            // If we've reached the target position
+            if (row == er && col == ec)
+            {
+                Map.PrintGrid(grid);
+                return cost;
+            }
+
+            // Explore all 4 possible directions
+            foreach (var (dr, dc) in directions)
+            {
+                int newRow = row + dr;
+                int newCol = col + dc;
+                int newCost = cost + 1;
+
+                // Skip out-of-bounds or blocked cells
+                if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols || grid[newRow, newCol] == '#')
+                {
+                    continue;
+                }
+
+                // Skip already-seen cells
+                if (!seen.Add((newRow, newCol)))
+                {
+                    continue;
+                }
+
+                // Enqueue new position with updated cost
+                pq.Enqueue((newCost, newRow, newCol), newCost);
+            }
+        }
+
+        return -1; // No path found
+    }
 }
