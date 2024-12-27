@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-def main(args):
+def main():
     # Read inputs from the file 'input.txt'
     grid = parse_input('input.txt')
     values, operations = parse(grid)
@@ -140,5 +140,4 @@ def parse(lines):
 
 
 if __name__ == '__main__':
-    import sys
-    main(sys.argv[1:])
+    main()
