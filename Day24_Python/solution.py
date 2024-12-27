@@ -2,7 +2,6 @@ from collections import defaultdict
 
 
 def main():
-    # Read inputs from the file 'input.txt'
     grid = parse_input('input.txt')
     values, operations = parse(grid)
 
