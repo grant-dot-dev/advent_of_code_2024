@@ -8,7 +8,7 @@ public class Program
         part1.Solve(true);
 
         var part2 = new Part2(true);
-        part2.Solve(true);
+        part2.Solve();
     }
 }
 
@@ -206,7 +206,7 @@ public static class OpcodeProcessor
         _rA = input.RA;
         _rB = input.RB;
         _rC = input.RC;
-        _oprs = [..input.Opr];
+        _oprs = [.. input.Opr];
     }
 }
 
